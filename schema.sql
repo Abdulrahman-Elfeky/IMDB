@@ -1,26 +1,5 @@
--- CREATE DATABASE IMDB
--- ON 
--- (
---     -- Data file settings
---     NAME = 'IMDB',
---     FILENAME = 'D:\Programs\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\IMDB.mdf',
---     SIZE = 1000MB,  -- Initial size of the data file
---     MAXSIZE = UNLIMITED,  -- Maximum size of the data file
---     FILEGROWTH = 100MB  -- Autogrowth increment for the data file
--- )
--- LOG ON
--- (
---     -- Transaction log file settings
---     NAME = 'IMDBLOG',
---     FILENAME = 'D:\Programs\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\IMDBLog.ldf',
---     SIZE = 1000MB,  -- Initial size of the log file
---     MAXSIZE = 2GB,  -- Maximum size of the log file
---     FILEGROWTH = 5MB  -- Autogrowth increment for the log file
--- );
+CREATE DATABASE IMDB
 
-SELECT servicename, service_account
-FROM sys.dm_server_services
---WHERE servicename = 'SQLEXPRESS'; -- Adjust for your SQL Server instance name if needed
 
 
 create table person(
@@ -111,20 +90,3 @@ WITH (
 );
 
 
-
-
-
-select * from person 
-where primaryName='al pacino';
-
-select * from person 
-where primaryName='rami malek';
-
-
-select title.primaryTitle,title.genres,averageRating from title,rating
-where title.tconst=rating.tconst and title.originalTitle='the godfather';
-
-
-select title.primaryTitle
-from title,crew,person
-where title.tconst=crew.tconst and crew.nconst = person.nconst and person.primaryName='al pacino'and title.titleType='movie';
